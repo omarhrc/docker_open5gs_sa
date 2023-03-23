@@ -7,11 +7,6 @@ Docker host machine
 
 - Ubuntu 18.04 and 20.04
 
-SDRs tested with srsLTE eNB
-
-- Ettus USRP B210
-- LimeSDR Mini v1.3
-
 UERANSIM (gNB + UE) simulator
 
 ## Build and Execution Instructions
@@ -21,18 +16,12 @@ UERANSIM (gNB + UE) simulator
 	* [docker-compose](https://docs.docker.com/compose)
 
 
-Clone repository and build base docker image of open5gs, kamailio, ueransim
+Clone repository and build base docker image of open5gs, ueransim
 
 ```
-git clone https://github.com/herlesupreeth/docker_open5gs
+git clone https://github.com/omarhrc/docker_open5gs
 cd docker_open5gs/base
 docker build --no-cache --force-rm -t docker_open5gs .
-
-cd ../ims_base
-docker build --no-cache --force-rm -t docker_kamailio .
-
-cd ../srslte
-docker build --no-cache --force-rm -t docker_srslte .
 
 cd ../ueransim
 docker build --no-cache --force-rm -t docker_ueransim .
@@ -46,20 +35,6 @@ set -a
 source .env
 docker-compose build --no-cache
 docker-compose up
-
-# srsRAN eNB
-docker-compose -f srsenb.yaml up -d && docker attach srsenb
-# srsRAN gNB
-docker-compose -f srsgnb.yaml up -d && docker attach srsgnb
-# srsRAN ZMQ based setup
-    # eNB
-    docker-compose -f srsenb_zmq.yaml up -d && docker attach srsenb_zmq
-    # gNB
-    docker-compose -f srsgnb_zmq.yaml up -d && docker attach srsgnb_zmq
-    # 4G UE
-    docker-compose -f srsue_zmq.yaml up -d && docker attach srsue_zmq
-    # 5G UE
-    docker-compose -f srsue_5g_zmq.yaml up -d && docker attach srsue_5g_zmq
 
 # UERANSIM gNB
 docker-compose -f nr-gnb.yaml up -d && docker attach nr_gnb
@@ -124,16 +99,6 @@ Password : 1423
 ```
 
 Using Web UI, add a subscriber
-
-## srsLTE eNB settings
-
-If SGWU_ADVERTISE_IP is properly set to the host running the SGWU container in NSA deployment, then the following static route is not required.
-On the eNB, make sure to have the static route to SGWU container (since internal IP of the SGWU container is advertised in S1AP messages and UE wont find the core in Uplink)
-
-```
-# NSA - 4G5G Hybrid deployment
-ip r add <SGWU_CONTAINER_IP> via <SGWU_ADVERTISE_IP>
-```
 
 ## Not supported
 - IPv6 usage in Docker
