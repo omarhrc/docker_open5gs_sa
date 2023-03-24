@@ -1,4 +1,4 @@
-# docker_open5gs_SA
+# docker_open5gs_sa
 Docker files to build and run open5gs in a docker
 
 ## Tested Setup
@@ -19,9 +19,9 @@ UERANSIM (gNB + UE) simulator
 Clone repository and build base docker image of open5gs, ueransim
 
 ```
-git clone https://github.com/omarhrc/docker_open5gs_SA
-cd docker_open5gs/base
-docker build --no-cache --force-rm -t docker_open5gs .
+git clone https://github.com/omarhrc/docker_open5gs_sa
+cd docker_open5gs_SA/base
+docker build --no-cache --force-rm -t docker_open5gs_sa .
 
 cd ../ueransim
 docker build --no-cache --force-rm -t docker_ueransim .
