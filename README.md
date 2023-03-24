@@ -1,4 +1,4 @@
-# docker_open5gs
+# docker_open5gs_SA
 Docker files to build and run open5gs in a docker
 
 ## Tested Setup
@@ -19,7 +19,7 @@ UERANSIM (gNB + UE) simulator
 Clone repository and build base docker image of open5gs, ueransim
 
 ```
-git clone https://github.com/omarhrc/docker_open5gs
+git clone https://github.com/omarhrc/docker_open5gs_SA
 cd docker_open5gs/base
 docker build --no-cache --force-rm -t docker_open5gs .
 
@@ -56,17 +56,11 @@ SGWU_ADVERTISE_IP --> Change this to value of DOCKER_HOST_IP set above only if e
 UPF_ADVERTISE_IP --> Change this to value of DOCKER_HOST_IP set above only if eNB/gNB is not running the same docker network/host
 ```
 
-If eNB/gNB is NOT running in the same docker network/host as the host running the dockerized Core/IMS then follow the below additional steps
+If eNB/gNB is NOT running in the same docker network/host as the host running the dockerized Core then follow the below additional steps
 
-Under mme section in docker compose file (docker-compose.yaml, nsa-deploy.yaml), uncomment the following part
-```
-...
-    # ports:
-    #   - "36412:36412/sctp"
-...
 ```
 
-Under amf section in docker compose file (docker-compose.yaml, nsa-deploy.yaml, sa-deploy.yaml), uncomment the following part
+Under amf section in docker compose file (docker-compose.yaml), uncomment the following part
 ```
 ...
     # ports:
@@ -74,15 +68,7 @@ Under amf section in docker compose file (docker-compose.yaml, nsa-deploy.yaml, 
 ...
 ```
 
-If deploying in SA mode only (sa-deploy.yaml), then uncomment the following part under upf section
-```
-...
-    # ports:
-    #   - "2152:2152/udp"
-...
-```
-
-If deploying in NSA mode only (nsa-deploy.yaml, docker-compose.yaml), then uncomment the following part under sgwu section
+Uncomment the following part under upf section
 ```
 ...
     # ports:
