@@ -20,7 +20,7 @@ Clone repository and build base docker image of open5gs, ueransim
 
 ```
 git clone https://github.com/omarhrc/docker_open5gs_sa
-cd docker_open5gs_SA/base
+cd docker_open5gs_sa/base
 docker build --no-cache --force-rm -t docker_open5gs_sa .
 
 cd ../ueransim
@@ -84,7 +84,13 @@ Username : admin
 Password : 1423
 ```
 
-Using Web UI, add a subscriber
+Using Web UI, add a subscriber:
+UE1_IMEI=356938035643803
+UE1_IMEISV=4370816125816151
+UE1_IMSI=001011234567895
+UE1_KI=8baf473f2f8fd09487cccbd7097c6862
+UE1_OP=11111111111111111111111111111111
+
 
 ## Not supported
 - IPv6 usage in Docker
