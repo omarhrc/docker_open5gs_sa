@@ -18,7 +18,7 @@ services:
       default:
         ipv4_address: ${MONGO_IP}
   webui:
-    image: docker_open5gs
+    image: docker_open5gs_sa
     container_name: webui
     depends_on:
       - mongo
@@ -38,7 +38,7 @@ services:
       default:
         ipv4_address: ${WEBUI_IP}
   nrf:
-    image: docker_open5gs
+    image: docker_open5gs_sa
     container_name: nrf
     env_file:
       - .env
@@ -55,7 +55,7 @@ services:
       default:
         ipv4_address: ${NRF_IP}
   scp:
-    image: docker_open5gs
+    image: docker_open5gs_sa
     container_name: scp
     env_file:
       - .env
@@ -72,7 +72,7 @@ services:
       default:
         ipv4_address: ${SCP_IP}
   ausf:
-    image: docker_open5gs
+    image: docker_open5gs_sa
     depends_on:
       - nrf
       - scp
@@ -92,7 +92,7 @@ services:
       default:
         ipv4_address: ${AUSF_IP}
   udr:
-    image: docker_open5gs
+    image: docker_open5gs_sa
     depends_on:
       - nrf
       - scp
@@ -113,7 +113,7 @@ services:
       default:
         ipv4_address: ${UDR_IP}
   udm:
-    image: docker_open5gs
+    image: docker_open5gs_sa
     depends_on:
       - nrf
       - scp
@@ -133,7 +133,7 @@ services:
       default:
         ipv4_address: ${UDM_IP}
   smf:
-    image: docker_open5gs
+    image: docker_open5gs_sa
     depends_on:
       - nrf
       - scp
@@ -162,7 +162,7 @@ services:
       default:
         ipv4_address: ${SMF_IP}
   upf:
-    image: docker_open5gs
+    image: docker_open5gs_sa
     depends_on:
       - nrf
       - scp
@@ -193,7 +193,7 @@ services:
       default:
         ipv4_address: ${UPF_IP}
   amf:
-    image: docker_open5gs
+    image: docker_open5gs_sa
     depends_on:
       - smf
       - upf
@@ -224,7 +224,7 @@ services:
       default:
         ipv4_address: ${AMF_IP}
   pcf:
-    image: docker_open5gs
+    image: docker_open5gs_sa
     depends_on:
       - nrf
       - scp
@@ -246,7 +246,7 @@ services:
       default:
         ipv4_address: ${PCF_IP}
   bsf:
-    image: docker_open5gs
+    image: docker_open5gs_sa
     depends_on:
       - nrf
       - scp
@@ -267,7 +267,7 @@ services:
       default:
         ipv4_address: ${BSF_IP}
   nssf:
-    image: docker_open5gs
+    image: docker_open5gs_sa
     depends_on:
       - nrf
       - scp
